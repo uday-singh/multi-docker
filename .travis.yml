@@ -4,19 +4,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t uday-singh/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t udaysingh/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true uday-singh/multi-docker npm test
+  - docker run -e CI=true udaysingh/multi-docker npm test
 after_success:
-  - docker build -t uday-singh/multi-client ./client
-  - docker build -t uday-singh/multi-server ./server
-  - docker build -t uday-singh/multi-nginx ./nginx
-  - docker build -t uday-singh/multi-worker ./worker
+  - docker build -t udaysingh/multi-client ./client
+  - docker build -t udaysingh/multi-server ./server
+  - docker build -t udaysingh/multi-nginx ./nginx
+  - docker build -t udaysingh/multi-worker ./worker
   # login to Docker CLI
   -  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push to docker hub
-  - docker push uday-singh/multi-client
-  - docker push uday-singh/multi-server
-  - docker push uday-singh/multi-nginx
-  - docker push uday-singh/multi-worker
+  - docker push udaysingh/multi-client
+  - docker push udaysingh/multi-server
+  - docker push udaysingh/multi-nginx
+  - docker push udaysingh/multi-worker
